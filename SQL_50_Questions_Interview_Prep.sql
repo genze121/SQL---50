@@ -66,3 +66,45 @@ INSERT INTO Title
  
 -- 3) check bonus table
  select * from bonus;
+ 
+ 
+ -- Q-1. Write an SQL query to fetch “FIRST_NAME” from Worker table using the alias name as <WORKER_NAME>.
+ 
+ select first_name as WORKER_NAME from worker;
+
+-- Q-2. Write an SQL query to fetch “FIRST_NAME” from Worker table in upper case.
+
+select upper(first_name) as FIRST_NAME from worker;
+
+-- Q-3. Write an SQL query to fetch unique values of DEPARTMENT from Worker table.
+
+select distinct(department) as DEPARTMENT from worker;
+
+-- Q-4. Write an SQL query to print the first three characters of  FIRST_NAME from Worker table.
+
+select substr(first_name,1,3) as FIRST_NAME from worker;
+
+-- Q-5. Write an SQL query to find the position of the alphabet (‘b’) in the first name column ‘Amitabh’ from Worker table.
+
+select position('b' in 'Amitabh') as FIRST_NAME from worker;
+
+-- Q-6. Write an SQL query to print the FIRST_NAME from Worker table after removing white spaces from the right side.
+
+select rtrim(first_name) as FIRST_NAME from worker;
+
+-- Q-7. Write an SQL query to print the DEPARTMENT from Worker table after removing white spaces from the left side.
+
+select ltrim(first_name) as FIRST_NAME from worker;
+
+-- Q-8. Write an SQL query that fetches the unique values of DEPARTMENT from Worker table and prints its length.
+
+select distinct(department) as DEPARTMENT, length(department) as DEPARTMENT_LENGTH from worker order by DEPARTMENT;
+
+-- Q-9. Write an SQL query to print the FIRST_NAME from Worker table after replacing ‘a’ with ‘A’.
+
+select replace(first_name,'a','A') as FIRST_NAME from worker;
+
+-- Q-10. Write an SQL query to print the FIRST_NAME and LAST_NAME from Worker table into a single column COMPLETE_NAME.
+-- A space char should separate them.
+
+select concat(first_name, ' ', last_name) as COMPLETE_NAME from worker;
