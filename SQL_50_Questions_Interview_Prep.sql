@@ -109,3 +109,47 @@ select replace(first_name,'a','A') as FIRST_NAME from worker;
 
 select concat(first_name, ' ', last_name) as COMPLETE_NAME from worker;
 
+-- Q-11. Write an SQL query to print all Worker details from the Worker table order by FIRST_NAME Ascending.
+
+select * from worker order by first_name asc;
+
+-- Q-12. Write an SQL query to print all Worker details from the Worker table order by 
+-- FIRST_NAME Ascending and DEPARTMENT Descending.
+
+select * from worker order by first_name asc, department desc;
+
+-- Q-13. Write an SQL query to print details for Workers with the first name as “Vipul” and “Satish” from Worker table.
+
+select * from worker where first_name in ('Vipul','Satish');
+
+-- Q-14. Write an SQL query to print details of workers excluding first names, “Vipul” and “Satish” from Worker table.
+
+select * from worker where first_name not in ('Vipul','Satish');
+
+-- Q-15. Write an SQL query to print details of Workers with DEPARTMENT name as “Admin*”.
+
+select * from worker where department like '%Admin%';
+
+select * from worker where department = 'Admin';
+
+-- Q-16. Write an SQL query to print details of the Workers whose FIRST_NAME contains ‘a’.
+
+select * from worker where first_name like 'a%';
+
+-- Q-17. Write an SQL query to print details of the Workers whose FIRST_NAME ends with ‘a’.
+
+select * from worker where first_name like '%a';
+
+-- Q-18. Write an SQL query to print details of the Workers whose FIRST_NAME ends with ‘h’ and contains six alphabets.
+
+select * from worker where first_name like '______h';
+
+-- Q-19. Write an SQL query to print details of the Workers whose SALARY lies between 100000 and 500000.
+
+select * from worker where salary between 100000 and 500000;
+
+select * from worker where salary >= 100000 and salary<= 500000;
+
+-- Q-20. Write an SQL query to print details of the Workers who have joined in Feb’2014.
+
+select * from worker where year(joining_date) = 2014 and month(joining_date) = '02';
