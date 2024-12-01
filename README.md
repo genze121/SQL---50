@@ -209,6 +209,52 @@ select w1.* from worker w1 join worker_clone w2 on w1.worker_id!=w2.worker_id;
 select current_date();
 select current_time();
 select current_timestamp();
+
+-- Q-32. Write an SQL query to show the top n (say 5) records of a table order by descending salary.
+
+select * from worker order by salary desc limit 5;
+
+-- Q-33. Write an SQL query to determine the nth (say n=5) highest salary from a table.
+
+select * from worker order by salary desc limit 4,1;
+
+-- Q-34. Write an SQL query to determine the 5th highest salary without using LIMIT keyword.
+
+select * from worker w1 where 4 = 
+(select count(distinct(w2.salary)) from worker w2 where w2.salary >= w1.salary);
+
+-- Q-35. Write an SQL query to fetch the list of employees with the same salary.
+
+select w1.* from worker w1, worker w2 where w1.salary = w2.salary and w1.worker_id!= w2.worker_id;
+
+-- Q-36. Write an SQL query to show the second highest salary from a table using sub-query.
+
+select max(salary) as Salary from worker where salary <
+(select max(salary) from worker);
+
+-- Q-37. Write an SQL query to show one row twice in results from a table.
+
+select * from worker
+union all
+select * from worker;
+
+-- Q-38. Write an SQL query to list worker_id who does not get bonus.
+
+select * from bonus;
+
+select * from worker where worker_id not in
+(select worker_ref_id from bonus);
+
+-- Q-39. Write an SQL query to fetch the first 50% records from a table.
+
+select * from worker where worker_id <= (select count(worker_id)/2 from worker);
+
+-- Q-40. Write an SQL query to fetch the departments that have less than 4 people in it.
+
+select department, count(department) as DEPARTMENT_COUNT 
+from worker group by department
+having DEPARTMENT_COUNT < 4
+order by department;
 select current_user();
 
 
