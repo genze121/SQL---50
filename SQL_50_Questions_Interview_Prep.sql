@@ -249,3 +249,56 @@ select department, count(department) as DEPARTMENT_COUNT
 from worker group by department
 having DEPARTMENT_COUNT < 4
 order by department;
+
+-- Q-41. Write an SQL query to show all departments along with the number of people in there.
+
+select department, count(department) as DEPARTMENT_COUNT from worker
+group by department
+order by department;
+
+-- Q-42. Write an SQL query to show the last record from a table.
+
+select * from worker where worker_id = 
+(select max(worker_id) from worker);
+
+-- Q-43. Write an SQL query to fetch the first row of a table.
+
+select * from worker where worker_id = 
+(select min(worker_id) from worker);
+
+-- Q-44. Write an SQL query to fetch the last five records from a table.
+
+(select * from worker order by worker_id desc limit 5) order by worker_id;
+
+-- Q-45. Write an SQL query to print the name of employees having the highest salary in each department.
+
+select w1.first_name, w1.salary, w1.department from
+(select department, max(salary) as max_sal from worker group by department) t1
+inner join worker w1 on w1.department = t1.department and w1.salary = t1.max_sal;
+
+-- Q-46. Write an SQL query to fetch three max salaries from a table using co-related subquery
+
+select * from worker w1 where 2 = 
+(select count(distinct(w2.salary)) from worker w2 where w2.salary >= w1.salary);
+
+-- Q-47. Write an SQL query to fetch three min salaries from a table using co-related subquery
+
+select * from worker w1 where 2 = 
+(select count(distinct(w2.salary)) from worker w2 where w2.salary <= w1.salary);
+
+-- Q-48. Write an SQL query to fetch nth max salaries from a table.
+
+-- Here n can be 1, 2, 3, 4 and so on.
+select * from worker where n = 
+(select count(distinct(w2.salary)) from worker w2 where w2.salary >= w1.salary);
+
+-- Q-49. Write an SQL query to fetch departments along with the total salaries paid for each of them.
+
+select department, sum(salary) as MAX_SUM from worker
+group by department
+order by department;
+
+-- Q-50. Write an SQL query to fetch the names of workers who earn the highest salary.
+
+select first_name, salary from worker where salary = 
+(select max(salary) from worker);
