@@ -108,3 +108,4 @@ select replace(first_name,'a','A') as FIRST_NAME from worker;
 -- A space char should separate them.
 
 select concat(first_name, ' ', last_name) as COMPLETE_NAME from worker;
+
