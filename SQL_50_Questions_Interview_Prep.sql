@@ -153,3 +153,53 @@ select * from worker where salary >= 100000 and salary<= 500000;
 -- Q-20. Write an SQL query to print details of the Workers who have joined in Feb’2014.
 
 select * from worker where year(joining_date) = 2014 and month(joining_date) = '02';
+
+-- Q-21. Write an SQL query to fetch the count of employees working in the department ‘Admin’.
+
+select department, count(*) as emp_count from worker where department like '%Admin%' group by department;
+
+-- Q-22. Write an SQL query to fetch worker full names with salaries >= 50000 and <= 100000.
+
+select concat(first_name, ' ', last_name) as FULL_NAME, salary from worker
+where salary between 50000 and 100000;
+
+-- Q-23. Write an SQL query to fetch the no. of workers for each department in the descending order.
+
+select department, count(department) as dept_count from worker group by department order by dept_count desc;
+
+-- Q-24. Write an SQL query to print details of the Workers who are also Managers.
+
+select * from worker where worker_id in (select worker_ref_id from title where worker_title = 'Manager');
+ 
+-- Q-25. Write an SQL query to fetch number (more than 1) of same titles in the ORG of different types.
+
+select worker_title, count(worker_title) as org_count from title group by worker_title order by worker_title;
+
+-- Q-26. Write an SQL query to show only odd rows from a table.
+
+select * from worker where worker_id%2=0;
+
+-- Q-27. Write an SQL query to show only even rows from a table. 
+
+select * from worker where worker_id%2!=0;
+
+-- Q-28. Write an SQL query to clone a new table from another table.
+
+create table worker_clone like worker;
+insert into worker_clone select * from worker;
+select * from worker_clone;
+
+-- Q-29. Write an SQL query to fetch intersecting records of two tables.
+
+select w1.* from worker w1, worker_clone w2 where w1.worker_id = w2.worker_id;
+
+-- Q-30. Write an SQL query to show records from one table that another table does not have.
+
+select w1.* from worker w1 join worker_clone w2 on w1.worker_id!=w2.worker_id;
+
+-- Q-31. Write an SQL query to show the current date, time, timestamp and user.
+
+select current_date();
+select current_time();
+select current_timestamp();
+select current_user();
