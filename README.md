@@ -312,3 +312,49 @@ select current_user();
 
 
 ```
+
+---
+
+> SQL Trick Based Question
+
+---
+
+```sql
+
+CREATE TABLE employees (
+	employee_id INT PRIMARY KEY,
+	name VARCHAR(50)
+);
+
+INSERT INTO employees (employee_id, name)
+VALUES
+	(1, 'Raghav'),
+	(2, 'Raashi'),
+	(3, 'Rohan'),
+	(4, 'Mohan');
+    
+CREATE TABLE projects (
+	project_id INT PRIMARY KEY,
+	name VARCHAR(50),
+	employee_id INT,
+	FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
+);
+
+INSERT INTO projects (project_id, name, employee_id)
+VALUES
+	(1, 'Project A', 1),
+	(2, 'Project B', 2),
+	(3, 'Project C', 1),
+	(4, 'Project D', 3);
+    
+    
+-- Write a SQL query to find the names of employees who have not been assigned to any project.
+
+select * from employees;
+
+select * from projects;
+
+select * from employees where employee_id not in
+(select employee_id from projects);
+
+```
