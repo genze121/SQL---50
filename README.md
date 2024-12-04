@@ -358,3 +358,5 @@ select * from employees where employee_id not in
 (select employee_id from projects);
 
 ```
+
+Credits: [Tirtha Sharma](https://github.com/genze121 "Tirtha Sharma")
