@@ -348,7 +348,7 @@ VALUES
 	(4, 'Project D', 3);
     
     
--- Write a SQL query to find the names of employees who have not been assigned to any project.
+-- Write an SQL query to find the names of employees not assigned to any project.
 
 select * from employees;
 
@@ -356,6 +356,17 @@ select * from projects;
 
 select * from employees where employee_id not in
 (select employee_id from projects);
+
+```
+
+```sql
+
+-- Write an SQL query to find the duplicate employees.
+
+select * from employees
+group by name
+having count(employee_id) > 1
+order by employee_id asc;
 
 ```
 
